@@ -20,7 +20,7 @@ variable "location" {
 # Full azure region is too long for a resource name since we are following CAF (cloud Adoption framework)
 variable "location_abbr" {
   type    = string
-  default = "weu"
+  default = "eus"
 }
 
 variable "owner" {
