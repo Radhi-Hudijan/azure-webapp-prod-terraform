@@ -38,14 +38,26 @@ resource "azurerm_subnet" "subnet" {
 # Creating a network security group for each subnet
 resource "azurerm_network_security_group" "nsg" {
     for_each            = var.subnets
-    name                = "${each.value.nsg}-${local.name_prefix}"
+    name                = "nsg-${each.value.nsg}-${local.name_prefix}"
     location            = azurerm_resource_group.webapp-rg.location
     resource_group_name = azurerm_resource_group.webapp-rg.name
 
     dynamic "security_rule" {
-        
-    }
+        for_each = local.nsg_rules[each.value.nsg]  # to map the nsg_rules to the subnets, we use the nsg value from the subnets variable to get the corresponding rules from the local.nsg_rules map
+           content {
+            name                       = security_rule.value.name
+            priority                   = security_rule.value.priority
+            direction                  = security_rule.value.direction
+            access                     = security_rule.value.access
+            protocol                   = security_rule.value.protocol
+            source_port_range          = security_rule.value.source_port_range
+            destination_port_range     = lookup(security_rule.value, "destination_port_range", null)
+            destination_port_ranges    = lookup(security_rule.value, "destination_port_ranges", null)
+            source_address_prefix      = security_rule.value.source_address_prefix
+            destination_address_prefix = security_rule.value.destination_address_prefix
+           }
 
+    }
 
     tags = local.common_tags
 }
