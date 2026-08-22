@@ -61,3 +61,10 @@ resource "azurerm_network_security_group" "nsg" {
 
     tags = local.common_tags
 }
+
+# associating the network security group to the subnet 
+resource "azurerm_subnet_network_security_group_association" "subnet_nsg_assoc" {
+    for_each = var.subnets
+    subnet_id                 = azurerm_subnet.subnet[each.key].id
+    network_security_group_id = azurerm_network_security_group.nsg[each.key].id
+}

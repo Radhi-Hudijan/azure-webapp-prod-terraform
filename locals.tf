@@ -12,7 +12,7 @@ locals {
     agw = [
       {
         name                       = "allow-gatewayManager"
-        priority                   = 100
+        priority                   = 110
         direction                  = "Inbound"
         access                     = "Allow"
         protocol                   = "Tcp"
@@ -23,7 +23,7 @@ locals {
       } ,
       {
         name                       = "allow-internet"
-        priority                   = 200
+        priority                   = 100
         direction                  = "Inbound"
         access                     = "Allow"
         protocol                   = "Tcp"
@@ -34,7 +34,7 @@ locals {
       },
       {
         name                       = "allow-AzureLoadBalancer"
-        priority                   = 300
+        priority                   = 120
         direction                  = "Inbound"
         access                     = "Allow"
         protocol                   = "Tcp"
