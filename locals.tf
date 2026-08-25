@@ -1,5 +1,5 @@
 locals {
-  name_prefix           = "${var.project}-${var.environment}-${var.location_abbr}"
+  name_prefix = "${var.project}-${var.environment}-${var.location_abbr}"
 
   common_tags = {
     project     = var.project
@@ -20,7 +20,7 @@ locals {
         destination_port_range     = "65200-65535"
         source_address_prefix      = "GatewayManager"
         destination_address_prefix = "*"
-      } ,
+      },
       {
         name                       = "allow-internet"
         priority                   = 100
@@ -28,8 +28,8 @@ locals {
         access                     = "Allow"
         protocol                   = "Tcp"
         source_port_range          = "*"
-        destination_port_ranges     = ["80","443"]
-        source_address_prefix    = "Internet"
+        destination_port_ranges    = ["80", "443"]
+        source_address_prefix      = "Internet"
         destination_address_prefix = "*"
       },
       {
@@ -46,5 +46,17 @@ locals {
     ]
     app = []
     pe  = []
+  }
+
+  private_dns_zones = {
+    keyvault = {
+      name = "privatelink.vaultcore.azure.net"
+    }
+    sql = {
+      name = "privatelink.database.windows.net"
+    }
+    webapp = {
+      name = "privatelink.azurewebsites.net"
+    }
   }
 }
