@@ -13,14 +13,14 @@ variable "environment" {
 
 variable "location" {
   type    = string
-  default = "East US"
+  default = "west europe"
 
 }
 
 # Full azure region is too long for a resource name since we are following CAF (cloud Adoption framework)
 variable "location_abbr" {
   type    = string
-  default = "eus"
+  default = "weu"
 }
 
 variable "owner" {
@@ -46,4 +46,9 @@ variable "subnets" {
     snet-app = { cidr = "10.0.2.0/24", delegation = true, nsg = "app" }  # for outbound traffic from the app service, delegation is required for the subnet to be used by the app service plan
     snet-pe  = { cidr = "10.0.3.0/24", delegation = false, nsg = "pe" }  # for private endpoints
   }
+}
+
+variable "app_service_plan_sku_name" {
+  type    = string
+  default = "P1v3"
 }
