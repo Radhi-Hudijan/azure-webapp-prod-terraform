@@ -4,7 +4,7 @@ data "azurerm_client_config" "current" {}
 
 # create a key vault with the access policy for the current user
 resource "azurerm_key_vault" "key_vault" {
-  name                          = "kv-${local.name_prefix}"
+  name                          = "key-vault-${local.name_prefix}"
   location                      = azurerm_resource_group.webapp-rg.location
   resource_group_name           = azurerm_resource_group.webapp-rg.name
   rbac_authorization_enabled    = true
