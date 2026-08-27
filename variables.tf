@@ -52,3 +52,11 @@ variable "app_service_plan_sku_name" {
   type    = string
   default = "P1v3"
 }
+
+
+// azure sql admin user
+variable "sql_admin_username" {
+  description = "The username for the Azure SQL Server administrator."
+  type        = string
+  default     = "sqladmin"
+}

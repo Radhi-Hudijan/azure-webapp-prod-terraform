@@ -33,8 +33,8 @@ resource "azurerm_role_assignment" "kv_secret_role_webapp" {
 }
 
 resource "random_password" "sql_admin" {
-length = 24
-special = true
+  length  = 24
+  special = true
 }
 
 # test secret to be created in the key vault
