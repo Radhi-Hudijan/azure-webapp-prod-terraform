@@ -2,7 +2,7 @@
 resource "azurerm_mssql_server" "sql-server" {
   name                         = "sql-server-${local.name_prefix}"
   resource_group_name          = azurerm_resource_group.webapp-rg.name
-  location                     = azurerm_resource_group.webapp-rg.location
+  location                     = var.sql_server_location # different location due to limit restriction
   version                      = "12.0"
   administrator_login          = var.sql_admin_username
   administrator_login_password = random_password.sql_admin.result

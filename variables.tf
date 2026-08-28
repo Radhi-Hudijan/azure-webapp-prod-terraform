@@ -60,3 +60,10 @@ variable "sql_admin_username" {
   type        = string
   default     = "sqladmin"
 }
+
+// azure sql server location due to limited restriction in west europe
+variable "sql_server_location" {
+  description = "The location for the Azure SQL Server."
+  type        = string
+  default     = "Germany West Central"
+}
